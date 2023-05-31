@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('taxable');
             $table->integer('category_status');
             $table->integer('sort_order');
-            $table->bigInteger('parent_id')->nullable();
+
             $table->timestamps();
         });
     }

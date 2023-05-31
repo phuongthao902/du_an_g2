@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_origin', function (Blueprint $table) {
-            $table->bigIncrements('origin_id')->id();
-            $table->integer('country');
-            $table->integer('uk_county');
+            $table->bigIncrements('origin_id');
+            $table->string('name');
+            $table->string('code');
             $table->timestamps();
         });
     }

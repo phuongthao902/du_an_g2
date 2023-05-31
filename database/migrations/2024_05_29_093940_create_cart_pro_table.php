@@ -11,27 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('tbl_order_pro')) {
-        Schema::create('tbl_order_pro', function (Blueprint $table) {
-            $table->bigIncrements('order_pro_id');
-            $table->bigInteger('order_id')->unsigned();
-            $table->bigInteger('product_id')->unsigned();
+        Schema::create('cart_pro', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('cart_id');
+            $table->unsignedBigInteger('product_id');
+            $table->integer('quantity');
+            $table->double('price',8,2);
+            $table->double('total_price',8,2);
+
             $table->timestamps();
 
-            $table->foreign('order_id')->references('order_id')->on('tbl_order')->onDelete('cascade');
+            $table->foreign('cart_id')->references('cart_id')->on('cart')->onDelete('cascade');
             $table->foreign('product_id')->references('product_id')->on('tbl_product')->onDelete('cascade');
-
-
-
         });
     }
-}
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_order_pro');
+        Schema::dropIfExists('cart_pro');
     }
 };

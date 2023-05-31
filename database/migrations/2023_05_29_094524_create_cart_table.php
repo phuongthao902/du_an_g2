@@ -11,28 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('tbl_order')){
-        Schema::create('tbl_order', function (Blueprint $table) {
-            $table->bigIncrements('order_id');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->text('quantity');
-            $table->text('address');
+        Schema::create('cart', function (Blueprint $table) {
+            $table->bigIncrements('cart_id');
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('order_id')->unsigned();
+
             $table->double('total_price')->default(0);
-            $table->tinyInteger('status')->default(0);
-            $table->integer('bill_info');
             $table->timestamps();
 
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('order_id')->references('order_id')->on('tbl_order')->onDelete('cascade');
+
         });
     }
-}
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_order');
+        Schema::dropIfExists('cart');
     }
 };

@@ -11,28 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('tbl_order')){
-        Schema::create('tbl_order', function (Blueprint $table) {
-            $table->bigIncrements('order_id');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->text('quantity');
-            $table->text('address');
-            $table->double('total_price')->default(0);
+        Schema::create('giftcodes', function (Blueprint $table) {
+            $table->id();
+            $table->string('code')->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->double('discount_amount')->default(0);
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
+            $table->date('expired');
             $table->tinyInteger('status')->default(0);
-            $table->integer('bill_info');
             $table->timestamps();
-
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
-}
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_order');
+        Schema::dropIfExists('giftcodes');
     }
 };

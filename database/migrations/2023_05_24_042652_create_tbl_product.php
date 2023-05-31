@@ -12,39 +12,21 @@ return new class extends Migration {
     {
         if (!Schema::hasTable('tbl_product')) {
             Schema::create('tbl_product', function (Blueprint $table) {
-                $table->bigInteger('product_id');
+                $table->bigIncrements('product_id');
                 $table->bigInteger('category_id')->unsigned();
                 $table->bigInteger('origin_id')->unsigned();
                 $table->bigInteger('order_id')->unsigned();
                 $table->bigInteger('brand_id')->unsigned();
-
                 $table->text('product_name');
-                $table->integer('inventory_on');
-                $table->integer('inventory');
-                $table->text('detailed_notes');
-                $table->integer('new');
-                $table->integer('changed');
-                $table->integer('pricing_unit');
                 $table->text('product_desc');
                 $table->string('unit_price');
                 $table->string('product_image');
-                $table->integer('ordering_unit');
-                $table->integer('random_weight');
-                $table->integer('meat_weight_type');
-                $table->integer('minimum_weight');
-                $table->integer('maximum_weight');
-                $table->string('extra_charge');
                 $table->bigInteger('image_id')->unsigned();
-                $table->integer('donotlist');
-                $table->integer('confirmed');
-                $table->timestamp('modified');
-                $table->integer('tax_exempt');
-                $table->integer('hidefrominvoice');
-                $table->integer('is_compound');
+
 
                 $table->timestamps();
 
-                $table->primary('product_id');
+                //$table->primary('product_id');
 
                 $table->foreign('category_id')->references('category_id')->on('tbl_category');
 

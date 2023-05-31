@@ -14,6 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('tbl_product_images')) {
         Schema::create('tbl_product_images', function (Blueprint $table) {
             $table->bigIncrements('image_id');
+            $table->unsignedBigInteger('product_id');
             $table->text('image_desc');
             $table->integer('bin_data');
             $table->integer('filename');
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->integer('filetype');
             $table->timestamps();
 
-            $table->foreign('image_id')->references('image_id')->on('tbl_product_images');
+            $table->foreign('product_id')->references('product_id')->on('tbl_product');
 
         });
     }
