@@ -15,7 +15,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="{{ asset('public/backend/css/style.css') }}" rel='stylesheet' type='text/css' />
     <link href="{{ asset('public/backend/css/style-responsive.css') }}" rel="stylesheet" />
     <!-- font CSS -->
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link
+        href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
+        rel='stylesheet' type='text/css'>
     <!-- font-awesome icons -->
     <link rel="stylesheet" href="{{ asset('public/backend/css/font.css') }}" type="text/css" />
     <link href="{{ asset('public/backend/css/font-awesome.css') }}" rel="stylesheet">
@@ -36,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!--logo start-->
             <div class="brand">
                 <a style="font-size: 20px" href="index.html" class="logo">
-                    ADMIN LOGOUT
+                    ADMIN DASHBOARD
                 </a>
                 <div class="sidebar-toggle-box">
                     <div class="fa fa-bars"></div>
@@ -52,22 +54,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="{{ 'public/backend/images/2.png' }}">
-                            <span class="username">
-                        <?php
-                           $name = Session::get('name');
-                           if ($name) {
-                            echo $name;
 
-              }
-            ?>
+                            <span class="name">
+                                <?php
+                            //     $name = Auth::user()->name;
+                            //     if ($name){
+                            //          echo $name;
+                            // }
+                                ?>
                             </span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
-                            <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                            <li><a href="{{ URL::to('/index') }}"><i class=" fa fa-suitcase"></i>Profile</a></li>
                             <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
-                            <li><a href="{{ URL::to('/logout') }}"><i class="fa fa-key"></i>Log Out</a></li>
+                            <li><a href="{{ URL::to('/logout-auth') }}"><i class="fa fa-key"></i>Log Out</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -96,8 +97,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span>Category</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="{{URL::to('/add-category-product')}}">Add category product</a></li>
-                                <li><a href="{{URL::to('/all-category-product')}}">List category product</a></li>
+                                <li><a href="{{ URL::to('/add-category-product') }}">Add category product</a></li>
+                                <li><a href="{{ URL::to('/all-category-product') }}">List category product</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -106,18 +107,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span>Band product</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="{{URL::to('/add-brand-product')}}">Add brand product</a></li>
-                                <li><a href="{{URL::to('/all-brand-product')}}">List brand product</a></li>
+                                <li><a href="{{ URL::to('/add-brand-product') }}">Add brand product</a></li>
+                                <li><a href="{{ URL::to('/all-brand-product') }}">List brand product</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-book"></i>
-                                <span>Product product</span>
+                                <span>Origin product</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="{{URL::to('/add-product')}}">Add product</a></li>
-                                <li><a href="{{URL::to('/all-product')}}">List product</a></li>
+                                <li><a href="{{ URL::to('/add-origin-product') }}">Add origin product</a></li>
+                                <li><a href="{{ URL::to('/all-origin-product') }}">List origin product</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-book"></i>
+                                <span>Product</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{ URL::to('/add-product') }}">Add product</a></li>
+                                <li><a href="{{ URL::to('/all-product') }}">List product</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-book"></i>
+                                <span>Users</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{ URL::to('/add-users') }}">Add user</a></li>
+                                <li><a href="{{ URL::to('/all-users') }}">List user</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-book"></i>
+                                <span>Order</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{ URL::to('/add-order') }}">Add order</a></li>
+                                <li><a href="{{ URL::to('/all-order') }}">List order</a></li>
                             </ul>
                         </li>
 
@@ -136,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- footer -->
             <div class="footer">
                 <div class="wthree-copyright">
-                    <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a>
+                    <p>© 2023 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a>
                     </p>
                 </div>
             </div>
@@ -157,11 +189,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             //BOX BUTTON SHOW AND CLOSE
             jQuery('.small-graph-box').hover(function() {
                 jQuery(this).find('.box-button').fadeIn('fast');
-            }, function() {
+            }
+            function() {
                 jQuery(this).find('.box-button').fadeOut('fast');
             });
             jQuery('.small-graph-box .box-close').click(function() {
-                jQuery(this).closest('.small-graph-box').fadeOut(200);
+                jQuery(this).closest('.small-graph-box').fadeOut(200)
                 return false;
             });
 
@@ -259,7 +292,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $('#mycalendar').monthly({
                 mode: 'event',
 
-            });
+            })
 
             $('#mycalendar2').monthly({
                 mode: 'picker',
@@ -269,7 +302,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 showTrigger: '#mytarget',
                 stylePast: true,
                 disablePast: true
-            });
+            })
 
             switch (window.location.protocol) {
                 case 'http:':
@@ -281,6 +314,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }
 
         });
+
     </script>
     <!-- //calendar -->
 </body>

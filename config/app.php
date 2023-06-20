@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+Spatie\Permission\PermissionServiceProvider::class;
 
 return [
 
@@ -180,6 +181,8 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
+    'Permission' => Spatie\Permission\Models\Permission::class,
+    'Role' => Spatie\Permission\Models\Role::class,
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,

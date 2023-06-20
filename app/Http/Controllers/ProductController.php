@@ -22,15 +22,21 @@ class ProductController extends Controller
         $this->AuthLogin();
         $cate_product = DB::table('tbl_category')->orderBy('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->orderBy('brand_id','desc')->get();
-        return view('admin.add_product')->with('cate_product',$cate_product)->with('brand_product',$brand_product);
+        $origin_product = DB::table('tbl_origin')->orderBy('origin_id','desc')->get();
+        return view('admin.add_product',compact('cate_product','brand_product','origin_product'));
     }
     public function all_product(){
         $this->AuthLogin();
         $all_product = DB::table('tbl_product')
         ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
+        ->join('tbl_order','tbl_order.order_id','=','tbl_order.product_id')
+        ->join('tbl_origin','tbl_origin.origin_id','=','tbl_origin.product_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->orderBy('tbl_product.product_id','desc')->get();
 
         $manage_product = view('admin.all_product')->with('all_product',$all_product);
+
+        $origin_product = DB::table('tbl_origin')->get();
+
         return view('admin_layout')->with('admin.all_product',$manage_product);
     }
     public function save_product(Request $request){
@@ -41,8 +47,8 @@ class ProductController extends Controller
         $data['product_desc'] = $request-> product_desc;
         $data['category_id'] = $request-> product_cate;
         $data['brand_id'] = $request-> product_brand;
-        $data['origin_id'] = $request-> product_origin;
-        $data['image_id'] = $request-> image_id;
+        $data['origin_id'] = $request-> origin;
+
 
         $get_image = $request->file('product_image');
 
@@ -74,6 +80,7 @@ class ProductController extends Controller
         $this->AuthLogin();
         $cate_product = DB::table('tbl_category')->orderBy('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->orderBy('brand_id','desc')->get();
+        $origin_product = DB::table('tbl_origin')->orderBy('origin_id','desc')->get();
 
         $edit_product = DB::table('tbl_product')->where('product_id',$product_id)->get();
 
@@ -91,7 +98,6 @@ class ProductController extends Controller
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->brand_product;
         $data['origin_id'] = $request->origin_product;
-        $data['image_id'] = $request->image_id;
 
         $get_image = $request->file('product_image');
 
@@ -126,6 +132,8 @@ class ProductController extends Controller
         $details_product = DB::table('tbl_product')
         ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
+        ->join('tbl_origin','tbl_origin.origin_id','=','tbl_origin.product_id')
+
         ->where('tbl_product.product_id',$product_id)->get();
 
         foreach($details_product as $key => $value){
@@ -139,4 +147,5 @@ class ProductController extends Controller
 
         return view('pages.product.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product);
     }
+
 }

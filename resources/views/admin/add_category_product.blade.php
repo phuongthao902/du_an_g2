@@ -18,12 +18,12 @@
                         <form role="form" action="{{ URL::to('save-category-product') }}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Song category name</label>
+                                <label for="exampleInputEmail1">Product category name</label>
                                 <input type="text" name="category_product_name" class="form-control"
                                     id="exampleInputEmail1" placeholder="Song category name">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Description of the song list</label>
+                                <label for="exampleInputPassword1">Description of the product list</label>
                                 <textarea style="resize: none" rows="10" class="form-control" name="category_product_desc" id="exampleInputPassword1"
                                     placeholder="Description of the song list"></textarea>
                             </div>
@@ -45,7 +45,7 @@
                                     id="exampleInputEmail1" placeholder="Song category name">
                             </div>
 
-                    <button type="submit" name="add_category_music" class="btn btn-info">Add category</button>
+                    <button type="submit" name="add_category_product" class="btn btn-info">Add category</button>
                 </form>
             </div>
 

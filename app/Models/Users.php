@@ -13,4 +13,20 @@ class Users extends Authenticatable
     protected $fillable=['username','fullname','email','password','role'];
     protected $primaryKey = 'user_id';
     public $timestamps=false;
+
+    public function hasRole($roles)
+    {
+        if (is_string($roles)) {
+            return $this->roles->contains('name', $roles);
+        }
+
+        foreach ($roles as $role) {
+            if ($this->hasRole($role->name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

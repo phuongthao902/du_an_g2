@@ -32,16 +32,8 @@
         <div class="product-information"><!--/product-information-->
             <img src="images/product-details/new.jpg" class="newarrival" alt="" />
             <h2>{{$value->product_name}}</h2>
-            <p>Singer name: {{$value->product_singer}}</p>
-            <p>Songs ID: {{$value->product_id}}</p>
-            {{-- <p>{{URL::to('public/uploads/product/'.$value->product_image)}}</p> --}}
-
-            {{-- <p>Audio songs:
-                <audio controls style="height: 100px; width: 100px;">
-                <source src="{{URL::to('public/product_audio/'.$value->product_audio)}}" type="audio/mpeg">
-                Your browser does not support the audio element.
-              </audio>
-            </p> --}}
+            <p>Product name: {{$value->product_name}}</p>
+            <p>Product ID: {{$value->product_id}}</p>
 
             <img src="images/product-details/rating.png" alt="" />
 
