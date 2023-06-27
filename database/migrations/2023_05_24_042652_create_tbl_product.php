@@ -15,7 +15,7 @@ return new class extends Migration {
                 $table->bigIncrements('product_id');
                 $table->bigInteger('category_id')->unsigned();
                 $table->bigInteger('origin_id')->unsigned();
-                $table->bigInteger('order_id')->unsigned();
+                // $table->bigInteger('order_id')->unsigned();
                 $table->bigInteger('brand_id')->unsigned();
                 $table->text('product_name');
                 $table->text('product_desc');
