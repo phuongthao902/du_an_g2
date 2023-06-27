@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ControllerName extends Controller
 {
     public function index(){
-        return view('welcome');
+        return view('layout');
     }
     public function userProfile(){
         return view('profile');

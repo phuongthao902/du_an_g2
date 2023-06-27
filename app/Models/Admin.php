@@ -20,7 +20,7 @@ class Admin extends Authentication
 
     public function roles()
     {
-        return $this->belongsToMany('App\Roles');
+        return $this->belongsToMany('App\Models\Roles');
     }
     public function getAuthPassword()
     {

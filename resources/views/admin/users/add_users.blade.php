@@ -27,7 +27,7 @@
 <body>
     <div class="log-w3">
         <div class="w3layouts-main">
-            <h2>Register</h2>
+            <h2>Add User</h2>
             <?php
             $message = Session::get('message');
             if ($message) {
@@ -35,26 +35,37 @@
                 Session::put('message', null);
             }
             ?>
-            <form action="{{ URL::to('/admin-dashboard') }}" method="post">
-                {{ csrf_field() }}
-
+            {{-- <form method="post" action="{{ route('registration') }}"> --}}
+            <form action="{{ URL::to('/all-users') }}" method="POST">
+                @csrf
                 <label style="margin-left: 45px;" for="name">{{ __('Name') }}</label><br><br>
-                <input style="width: 350px; height: 30px; margin-left: 45px;" id="name" type="text" name="name" value="{{ old('name') }}" required autofocus><br><br>
+                <input style="width: 350px; height: 30px; margin-left: 45px;" id="name" type="text"
+                    name="name" value="{{ old('name') }}" required autofocus><br><br>
 
                 <label style="margin-left: 45px;" for="email">{{ __('E-Mail Address') }}</label><br><br>
-                <input style="width: 350px; height: 30px; margin-left: 45px;" id="email" type="email" name="email" value="{{ old('email') }}" required><br><br>
+                <input style="width: 350px; height: 30px; margin-left: 45px;" id="email" type="email"
+                    name="email" value="{{ old('email') }}" required><br><br>
+
+                <label style="margin-left: 45px;" for="email">{{ __('Address') }}</label><br><br>
+                <input style="width: 350px; height: 30px; margin-left: 45px;" id="address" type="address"
+                        name="address" value="" required><br><br>
 
                 <label style="margin-left: 45px;" for="password">{{ __('Password') }}</label><br><br>
-                <input style="width: 350px; height: 30px; margin-left: 45px;" id="password" type="password" name="password" required autocomplete="new-password"><br><br>
+                <input style="width: 350px; height: 30px; margin-left: 45px;" id="password" type="password"
+                    name="password" required autocomplete="new-password"><br><br>
 
                 <label style="margin-left: 45px;" for="password-confirm">{{ __('Confirm Password') }}</label><br><br>
-                <input style="width: 350px; height: 30px; margin-left: 45px;" id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password"><br><br>
+                <input style="width: 350px; height: 30px; margin-left: 45px;" id="password-confirm" type="password"
+                    name="password_confirmation" required autocomplete="new-password"><br><br>
 
-                <button style="margin-left:170px; height:35px; width:105px; background-color:rgb(213, 243, 94)" type="submit">register</button>
-
+                <select style="margin-left: 45px; width:355px; height:30px" name="decentralization" id="decentralization">{{_('Decentralization')}}
+                    <option value="">Admin</option>
+                    <option value="">User</option>
+                </select><br><br>
+                <button style="margin-left:170px; height:35px; width:105px; background-color:rgb(213, 243, 94)"
+                    type="submit">Add</button>
             </form>
-            <a href="{{ url('/register-auth') }}">Đăng Ký Auth</a>
-            {{-- <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p> --}}
+
         </div>
     </div>
     <script src="{{ asset('public/backend/js/bootstrap.js') }}"></script>

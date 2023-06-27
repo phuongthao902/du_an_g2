@@ -21,12 +21,11 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Quantity</label>
                                 <input type="text" name="quantity" class="form-control" id="exampleInputEmail1"
-                                    placeholder="quantity">
+                                    >
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Address</label>
-                                <textarea style="resize: none" rows="10" class="form-control" name="address" id="exampleInputPassword1"
-                                    placeholder="Address"></textarea>
+                                <textarea style="resize: none" rows="10" class="form-control" name="address" id="exampleInputAddress"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Total price</label>
@@ -45,14 +44,15 @@
                                 <input type="text" name="bill_info" class="form-control" id="exampleInputEmail1"
                                     placeholder="bill info">
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="exampleInputFile">Product</label>
                                 <select name="product_id" class="form-control input-sm m-bot15">
                                     @foreach ($pro_product as $key => $pro)
                                     <option value="{{ $pro->product_id}}">{{ $product->product_name }}</option>
                                 @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
+
                             <button type="submit" name="add_order" class="btn btn-info">Add order</button>
                         </form>
                     </div>

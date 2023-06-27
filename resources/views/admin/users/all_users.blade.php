@@ -54,23 +54,38 @@
                     </thead>
                     <tbody>
                         @foreach ($admin as $key => $user)
+                            {{-- <tr>
+                                <th scope="row">{{ $key }}</th>
+                                <th scope="row">{{ $user->name }}</th>
+                                <th scope="row">{{ $user->email }}</th>
+                                <th scope="row">{{ $user->phone }}</th>
+                                <th scope="row">{{ $user->password }}</th>
+                                <th scope="row">
+                                    <a href="" class="btn btn-success">Phân quyền</a>
+                                </th>
+                                <th scope="row">{{ $user }}</th>
+                            </tr> --}}
                             <form action="{{ url('/assign-roles') }}" method="POST">
                                 @csrf
                                 <tr>
                                     <td><label class="i-checks m-b-none"><input type="checkbox"
                                                 name="post[]"><i></i></label></td>
                                     <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}<input type="hidden" name="email" value="{{ $user->email }}">
-                                    </td>
+                                    <td>{{ $user->email }}<input type="hidden" name="email" value="{{ $user->email }}"></td>
                                     <td>{{ $user->phone }}</td>
                                     <td>{{ $user->password }}</td>
-                                    <td><input type="checkbox" name="author_role"
-                                            {{ $user->hasRole('author') ? 'checked' : '' }}></td>
-                                    <td><input type="checkbox" name="admin_role"
-                                            {{ $user->hasRole('admin') ? 'checked' : '' }}></td>
-                                    <td><input type="checkbox" name="user_role"
-                                            {{ $user->hasRole('user') ? 'checked' : '' }}></td>
 
+                                    <td>
+                                        <input type="checkbox" name="author_role"
+                                            {{ $user->hasRole('author') ? 'checked' : '' }}></td>
+                                    <td>
+                                        <input type="checkbox" name="admin_role"
+                                            {{ $user->hasRole('admin') ? 'checked' : '' }}>
+                                        </td>
+                                    <td>
+                                        <input type="checkbox" name="user_role"
+                                            {{ $user->hasRole('user') ? 'checked' : '' }}>
+                                        </td>
                                     <td>
                                         <input type="submit" value="Assign roles" class="btn btn-sm btn-default">
                                     </td>

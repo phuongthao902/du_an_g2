@@ -30,9 +30,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Price </label>
-                                <input type="text" value="{{$pro->unit_price}}" name="product_price" class="form-control"
-                                    id="exampleInputEmail1">
+                                <label for="exampleInputEmail1">Product price</label>
+                                <input type="number" name="unit_price" class="form-control" id="exampleInputEmail1"
+                                    value="{{$pro->unit_price}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Category </label>
@@ -48,14 +48,29 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Brand</label>
-                                <select name="product_brand" class="form-control input-sm m-bot15">
+                                <select name="brand_product" class="form-control input-sm m-bot15">
                                 @foreach($brand_product as $key =>$brand)
-                                @if ($cate->category_id==$pro->category_id)
+                                @if ($brand->brand_id==$pro->brand_id)
                                  <option selected value="{{$brand->brand_id}}">{{$brand->brand_name}}</option>
                                  @else
-                                 <option value="{{$brand->brand_id}}">{{$brand->brand_name}}</option>
+                                 <option value="{{$brand->brand_name}}">{{$brand->brand_id}}</option>
                                  @endif
                                  @endforeach
+                                </select>
+                            </div>
+                            {{-- <div class="form-group">
+                                        <label for="exampleInputFile">Origin</label>
+                                        <select name="origin" class="form-control input-sm m-bot15">
+                                            @foreach ($origin_product as $key => $origin)
+                                            @if ($origin->origin_id==$pro->origin_id)
+                                            <option value="{{ $origin->origin_id}}">{{ $origin->name }}</option>
+                                            @else
+                                            <option value="{{$origin->origin_id}}">{{$origin->name}}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div> --}}
+
                                 </select>
                             </div>
                             <div class="form-group">
@@ -65,7 +80,7 @@
                                     <option value="1">Show</option>
                                 </select>
                             </div>
-                            <button type="submit" name="update_product" class="btn btn-info">Update music </button>
+                            <button type="submit" name="update_product" class="btn btn-info">Update product </button>
                         </form>
                         @endforeach
                     </div>

@@ -48,7 +48,7 @@
               <th>Image</th>
               <th>Category</th>
               <th>Brand</th>
-              <th>Origin</th>
+              {{-- <th>Origin</th> --}}
 
               <th style="width:30px;"></th>
             </tr>
@@ -58,11 +58,12 @@
             <tr>
               <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
               <td>{{$pro->product_name}}</td>
+              <td>{{$pro->product_desc}}</td>
               <td>{{$pro->unit_price}}</td>
               <td><img src="public/uploads/product/{{$pro->product_image}}" height="100" width="100"></td>
               <td>{{$pro->category_name}}</td>
               <td>{{$pro->brand_name}}</td>
-              <td>{{$pro->origin_name}}</td>
+              {{-- <td>{{$pro->origin->origin_name}}</td> --}}
             <td>{{$pro->product_desc}}</td>
 
 

@@ -28,10 +28,10 @@ class ProductController extends Controller
     public function all_product(){
         $this->AuthLogin();
         $all_product = DB::table('tbl_product')
-        ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
-        ->join('tbl_order','tbl_order.order_id','=','tbl_order.product_id')
-        ->join('tbl_origin','tbl_origin.origin_id','=','tbl_origin.product_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->orderBy('tbl_product.product_id','desc')->get();
+        ->leftJoin('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
+        ->leftJoin('tbl_order','tbl_order.order_id','=','tbl_order.product_id')
+        ->leftJoin('tbl_origin','tbl_origin.origin_id','=','tbl_origin.product_id')
+        ->leftJoin('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->orderBy('tbl_product.product_id','desc')->get();
 
         $manage_product = view('admin.all_product')->with('all_product',$all_product);
 
@@ -107,10 +107,7 @@ class ProductController extends Controller
             $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/uploads/product',$new_image);
             $data['product_image'] = $new_image;
-
         }
-
-
         DB::table('tbl_product')->where('product_id',$product_id)->update($data);
         Session::put('message','Update product product successful');
         return Redirect::to('all-product');
@@ -127,7 +124,7 @@ class ProductController extends Controller
     public function details_product($product_id){
         $cate_product = DB::table('tbl_category')->where('category_status','0')->orderBy('category_id','desc')->get();
 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderBy('brand_id','desc')->get();
+        $brand_product = DB::table('tbl_brand')->orderBy('brand_id','desc')->get();
 
         $details_product = DB::table('tbl_product')
         ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
@@ -136,16 +133,16 @@ class ProductController extends Controller
 
         ->where('tbl_product.product_id',$product_id)->get();
 
-        foreach($details_product as $key => $value){
-        $category_id = $value->category_id;
-        }
+        // foreach($details_product as $key => $value){
+        // $category_id = $value->category_id;
+        // }
 
         $related_product = DB::table('tbl_product')
         ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->where('tbl_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
+        ->where('tbl_product.product_id',$product_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
 
-        return view('pages.product.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product);
+        return view('pages.product.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('details_product',$details_product)->with('relate',$related_product);
     }
 
 }

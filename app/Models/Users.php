@@ -29,4 +29,22 @@ class Users extends Authenticatable
         return false;
     }
 
+    // public function profile()
+    // {
+    //     $user = User::find(1);
+    //     $profile = $user->profile;
+    //     return $this->hasOne(Profile::class);
+    // }
+    // protected static function booted()
+    // {
+    //     static::created(function ($user) {
+    //         $user->profile()->create([
+    //             'name' => $user->name,
+    //             'avatar' => 'default.jpg' // giá trị mặc định cho avatar
+    //         ]);
+    //     });
+    // }
+
+
+
 }

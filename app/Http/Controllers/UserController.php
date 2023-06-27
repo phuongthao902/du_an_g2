@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Roles;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Session;
 use Redirect;
 use DB;
-use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -22,7 +23,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $admin = Admin::with('roles')->orderBy('id', 'DESC')->paginate(5);
+        $admin = Role::with('role')->orderBy('id', 'DESC')->paginate(5);
         return view('admin.users.all_users')->with(compact('admin'));
     }
 
