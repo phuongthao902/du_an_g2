@@ -19,7 +19,7 @@ class adminMiddleWare
      */
     public function handle(Request $request, Closure $next)
     {
-        $account = accountModel::find(session('id_user'));
+        $account = Admin::find(session('id_user'));
 
         if ($account && $account->is_admin == 1) {
             return $next($request);

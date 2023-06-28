@@ -1,65 +1,52 @@
 <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use App\Models\Admin;
-use App\Models\Roles;
-use App\Models\Users;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Models\Role;
-use Session;
-use Redirect;
-use DB;
+    use App\Models\Usermanagement;
+    use App\Models\User;
+    use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\Validator;
+    use Illuminate\Support\Facades\File;
+    use Illuminate\Support\Facades\Hash;
 
+    use Illuminate\Http\Request;
 
-class UserController extends Controller
-{
-    // public function showProfile()
-    // {
-    //     $user = Auth::user();
-    //     return view('profile', compact('user'));
-    // }
-
-    public function index()
+    class UserController extends Controller
     {
-        $admin = Role::with('role')->orderBy('id', 'DESC')->paginate(5);
-        return view('admin.users.all_users')->with(compact('admin'));
-    }
-
-    public function add_users()
-    {
-        return view('admin.users.add_users');
-    }
-    public function assign_roles(Request $request)
-    {
-        // $data=$request->all();
-
-        $user = Admin::where('email', $request->email)->first();
-        $user->roles()->detach();
-        if ($request->author_role) {
-            $user->roles()->attach(Roles::where('name', 'author')->first());
+        public function Usersindex(){
+            $user=Usermanagement::all();
+            return view('admin_login.all_users', compact('user'));
         }
-        if ($request->user_role) {
-            $user->roles()->attach(Roles::where('name', 'user')->first());
+
+        public function edit_user($id){
+            $data['user']=Usermanagement::find($id);
+            return view('admin.editUsers',$data);
         }
-        if ($request->admin_role) {
-            $user->roles()->attach(Roles::where('name', 'admin')->first());
+
+        public function postEditUsers(Request $request,$id){
+            if($request->isMethod('POST')){
+                $validator=Validator::make($request->all(),[
+                    'password'=>'required',
+                ]);
+
+                if($validator->fails()){
+                    return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+                }
+
+                $user=Usermanagement::find($id);
+                $user->password=Hash::make($request->password);
+                $user->save();
+                return redirect()->route('admin.user.index')->with('success','Edit password Successfully!');
+            }
         }
-        return redirect()->back()->with('message', 'Cấp quyền thành công');
-    }
-    public function store_users(Request $request)
-    {
-        $data = $request->all();
-        $admin = new Admin();
-        $admin->name = $data['name'];
-        $admin->phone = $data['phone'];
-        $admin->email = $data['email'];
-        $admin->password = $data['password'];
-        $admin->save();
-        $admin->roles()->attach(Roles::where('name', 'user')->first());
-        Session::put('message', 'Thêm users thành công');
-        return Redirect::to('users');
+
+        public function deleteUsers($id){
+            $figure=Usermanagement::find($id);
+            $figure->delete();
+            return back();
+        }
     }
 
-}
+

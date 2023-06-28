@@ -47,7 +47,7 @@
               <th>Taxable</th>
               <th>Show</th>
               <th>Sort order</th>
-              <th style="width:30px;"></th>
+              <th style="width:90px;"></th>
             </tr>
           </thead>
           <tbody>

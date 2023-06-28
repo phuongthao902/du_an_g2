@@ -19,7 +19,7 @@ class OrderController extends Controller
         $all_order_product = DB::table('tbl_order')->get();
         $manage_order_product = view('admin.all_order_product')->with('all_order_product', $all_order_product);
 
-        $pro_product = DB::table('tbl_product')->get();
+        $order_product = DB::table('tbl_product')->get();
 
         return view('admin_layout')->with('admin.all_order_product', $manage_order_product);
 
@@ -33,7 +33,7 @@ class OrderController extends Controller
         $data['total_price'] = $request->order_total_price;
         $data['status'] = $request->order_status;
         $data['bill_info'] = $request->order_bill_info;
-        $data['product_id'] = $request->pro_product;
+        $data['product_id'] = $request->order_product;
 
         DB::table('tbl_order')->insert($data);
         Session::put('message','Add order successfully');

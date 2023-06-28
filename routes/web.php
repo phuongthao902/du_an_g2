@@ -17,10 +17,10 @@ Route::get('/', [ControllerName::class,'index']);
 Route::resource('users','UsersController')->only(['index','show']);
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');
-Route::get('add-users','App\Http\Controllers\UserController@add_users');
-Route::get('all-users','App\Http\Controllers\UserController@index');
-Route::post('store-users','App\Http\Controllers\UserController@store_users');
-Route::post('assign-roles','App\Http\Controllers\UserController@assign_roles');
+Route::get('edit-users','App\Http\Controllers\UserController@edit_user');
+Route::get('all-users','App\Http\Controllers\UserController@Usersindex');
+Route::post('postEditUsers','App\Http\Controllers\UserController@postEditUsers');
+Route::get('deleteUsers','App\Http\Controllers\UserController@deleteUsers');
 
 //backend
 Route::get('/admin', 'App\Http\Controllers\AdminController@index');
