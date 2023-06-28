@@ -126,10 +126,12 @@ class ProductController extends Controller
 
         $brand_product = DB::table('tbl_brand')->orderBy('brand_id','desc')->get();
 
+        $origin_product = DB::table('tbl_origin')->orderBy('origin_id','desc')->get();
+
         $details_product = DB::table('tbl_product')
         ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->join('tbl_origin','tbl_origin.origin_id','=','tbl_origin.product_id')
+        ->join('tbl_origin','tbl_origin.origin_id','=','tbl_product.origin_id')
 
         ->where('tbl_product.product_id',$product_id)->get();
 
@@ -140,9 +142,11 @@ class ProductController extends Controller
         $related_product = DB::table('tbl_product')
         ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
+        ->join('tbl_origin','tbl_origin.origin_id','=','tbl_product.origin_id')
+
         ->where('tbl_product.product_id',$product_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
 
-        return view('pages.product.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('details_product',$details_product)->with('relate',$related_product);
+        return view('pages.product.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('origin',$origin_product)->with('details_product',$details_product)->with('relate',$related_product);
     }
 
 }

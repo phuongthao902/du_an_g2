@@ -138,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span>Users</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="{{ URL::to('/add-users') }}">Add user</a></li>
+                                {{-- <li><a href="{{ URL::to('/add-users') }}">Add user</a></li> --}}
                                 <li><a href="{{ URL::to('/all-users') }}">List user</a></li>
                             </ul>
                         </li>

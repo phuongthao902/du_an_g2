@@ -48,9 +48,9 @@
               <th>Image</th>
               <th>Category</th>
               <th>Brand</th>
-              {{-- <th>Origin</th> --}}
+              <th>Origin</th>
 
-              <th style="width:30px;"></th>
+              <th style="width:90px;"></th>
             </tr>
           </thead>
           <tbody>
@@ -63,9 +63,7 @@
               <td><img src="public/uploads/product/{{$pro->product_image}}" height="100" width="100"></td>
               <td>{{$pro->category_name}}</td>
               <td>{{$pro->brand_name}}</td>
-              {{-- <td>{{$pro->origin->origin_name}}</td> --}}
-            <td>{{$pro->product_desc}}</td>
-
+            <td>{{$pro->name}}</td>
 
               <td>
                 <a href="{{URL::to('/edit-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">

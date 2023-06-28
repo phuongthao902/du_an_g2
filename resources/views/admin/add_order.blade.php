@@ -15,7 +15,7 @@
                 ?>
                 <div class="panel-body">
                     <div class="position-center">
-                        <form role="form" action="{{ URL::to('save-order-product') }}" method="post"
+                        <form role="form" action="{{ URL::to('/save-order-product') }}" method="post"
                             enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
@@ -47,8 +47,8 @@
                             {{-- <div class="form-group">
                                 <label for="exampleInputFile">Product</label>
                                 <select name="product_id" class="form-control input-sm m-bot15">
-                                    @foreach ($pro_product as $key => $pro)
-                                    <option value="{{ $pro->product_id}}">{{ $product->product_name }}</option>
+                                    @foreach ($order_product as $key => $pro)
+                                    <option value="{{ $pro->product_id}}">{{ $pro->product_name }}</option>
                                 @endforeach
                                 </select>
                             </div> --}}

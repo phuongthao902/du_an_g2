@@ -152,7 +152,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="chefDirectory.html">Chef Directory</a></li>
-                    <li><a href="login.html">Login / Register</a></li>
+                    <li><a href="{{URL::to('/admin')}}">Login / Register</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -232,7 +232,7 @@
                         <div class="scrim"></div>
                         {{-- <span class="small-text-overlay">5 Products</span> --}}
                         <p>{{ $category1->category_name }}</p>
-                        <img src="{{ 'public/frontend/images/tag_nasi.jpg ' }}">
+                        <img src="{{ 'public/frontend/images/tag_healthy.jpg ' }}">
                         {{-- @php
                             $count++;
                         @endphp
